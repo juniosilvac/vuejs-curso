@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 08 - Filters</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div id="app">
+    <h1>{{titulo}}</h1>  
+    <ul>
+        <li v-for="usuario in usuarios">{{usuario.nome | truncate()}}</li>
+    </ul>
+
+    <form action="http://www.google.com.br">
+    <button 
+        type="submit"
+        class="btn btn-primary"
+        @click.prevent.stop="enviar()">Enviar</button>
+    </form>
+   
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var app = new Vue({
+        el:"#app",
+        data:{                  
+            titulo: "Aula 08 - Filters!",
+            usuarios: [
+                {nome: 'Jon Snow'},
+                {nome: 'Leandro Roque'},
+                {nome: 'Von Mises'}
+            ]          
+        },
+        filters: {
+            toUpperCase(str, param1, param2){              
+                return str.toUpperCase();
+            },
+            truncate(str){
+                return str.substring(0,10);
+            }
+        },
+        methods:{
+            enviar(){
+                alert('Enviando!');
+            }
+        }
+    })
+    </script>
+</body>
+</html>

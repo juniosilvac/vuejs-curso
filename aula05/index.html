@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 05 - Diretiva:  v-bind</title>
+    <style>
+        .red {
+            color:red;
+        }
+
+        .green {
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    <h1>{{titulo}}</h1>     
+    <img 
+        :src="imagem" 
+        :alt="alt" /> 
+
+    <p :class="classHtml">
+        Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.
+    </p>   
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var app = new Vue({
+        el:"#app",
+        data:{                  
+            titulo: "Aula 05 - Diretiva:  v-bind!",         
+            imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYLZ-Fhp3A9ls0E7qYy2dTSl9iEZ7tz9mKREBwC3hv2O7Sqp2&s",
+            alt:"Icone Vuejs!",
+            classHtml:"red"
+        }
+    })
+    </script>
+</body>
+</html>
