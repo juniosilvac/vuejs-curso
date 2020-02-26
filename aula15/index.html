@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 15 - Vue js slots, fazendo mágica dentro do componente</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div id="app">
+        <br />
+        <br />
+       
+        <div class="container">
+            <card>
+                <h4 slot="title" class="card-title">Card title</h4>
+                <p slot="text" class="card-text"> Some quick example text to build on the card</p>
+                <a slot="action" href="#" class="btn btn-primary">Go somewhere</a>
+            </card>
+<br />
+            <card>
+                <h4 slot="title" class="card-title">Card title 2</h4>
+                <template slot="text">
+                    <p  class="card-text"> Some quick example text to build on the card</p>
+                    <p  class="card-text"> Some quick example text to build on the card</p>
+                    <p  class="card-text"> Some quick example text to build on the card</p>
+                </template>               
+                <a slot="action" href="#" class="btn btn-primary">Leia mais...</a>
+            </card>
+        </div>
+    </div>
+
+    <template id="card">
+        <div class="card">
+            <img class="cad-img-top" src="http://via.placeholder.com/350x150" />
+            <div class="card-block">
+                <slot name="title"></slot>   
+                <slot name="text"></slot>    
+                <slot name="action"></slot>                 
+            </div>
+        </div>
+      
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('card', {
+            template:'#card',
+            data() {
+                return {
+                    title:''
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Aula 15 - Vue js slots, fazendo mágica dentro do componente!"
+            }
+        })
+    </script>
+</body>
+
+</html>
