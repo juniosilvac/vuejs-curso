@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 16 - Vue js mixins, criando código reutilizáveis</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div id="app">
+        <br />
+        <br />
+       
+        <div class="container">
+          <h1> {{titulo}}</h1>  
+          <button @click.stop.prevent = "getUsers()" class="btn bt-success">submit</button>
+        </div>
+    </div>   
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>    
+        var mixin = {
+            methods: {
+                getUsers() {
+                    console.log('get users');
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: "#app",
+            mixins:[mixin],
+            data: {
+                titulo: "Aula 16 - Vue js mixins, criando código reutilizáveis!"
+            },
+            methods: {               
+            }
+        })
+    </script>
+</body>
+
+</html>
