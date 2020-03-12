@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 19 - Vue js atributos especiais (key, ref, slot, is)</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div id="app">
+        <br />
+        <br />
+       
+        <div class="container">
+          <h1> {{titulo}}</h1>  
+         <ul ref="users">
+             <li v-for="(item, index) in users" :key="item.name">{{item.name}} <a @click.stop.prevent='remove(index)'>x</a></li>
+         </ul>
+        </div>
+    </div>   
+    <!-- <template id="transformers">
+    </template>
+
+    <template id="gameOfThrones">
+
+    </template> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>  
+        var app = new Vue({
+            el: "#app",    
+            mounted() {
+                console.log(this.$refs.users);
+            },    
+            data: {
+                titulo: "Aula 19 - Vue js atributos especiais (key, ref, slot, is)!",
+                users: [                    
+                   { name: 'Emma' },
+                   { name: 'Sophia' },
+                   { name: 'Isabella' }
+                ]
+            },
+            methods: {
+                remove(index) {
+                    this.users.splice(index,1);
+                }
+            }            
+        })
+    </script>
+</body>
+
+</html>
