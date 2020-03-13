@@ -17,24 +17,65 @@
         <br />
         <br />
        
-        <div class="container">
+        <div class="container">          
           <h1> {{titulo}}</h1>  
+          <component :is="movie"></component>
          <ul ref="users">
              <li v-for="(item, index) in users" :key="item.name">{{item.name}} <a @click.stop.prevent='remove(index)'>x</a></li>
          </ul>
+         <game-of-thrones>
+             <h4 slot="title">GameOfThrones</h4>
+         </game-of-thrones>
         </div>
+      
     </div>   
-    <!-- <template id="transformers">
+    <template id="transformers">
+        <div>
+        <h4> Transformers</h4>  
+        <ul>
+            <li v-for="item in transformers">{{item.name}} </li>
+        </ul>
+    </div>
     </template>
 
     <template id="gameOfThrones">
-
-    </template> -->
-
+        <div>
+        <slot name="title"></slot>  
+        <ul>
+            <li v-for="item in gameOfThrones">{{item.name}} </li>
+        </ul>
+        </div>
+    </template>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script>  
+    Vue.component('transformers', {
+        template: '#transformers',
+        data() {
+            return {
+                transformers:  [                    
+                   { name: 'Emma' },
+                   { name: 'Sophia' },
+                   { name: 'Isabella' }
+                ]
+            }
+        }
+    })
+
+    Vue.component('game-of-thrones', {
+        template: '#gameOfThrones',
+        data() {
+            return {
+                gameOfThrones:  [                    
+                   { name: 'Emma' },
+                   { name: 'Sophia' },
+                   { name: 'Isabella' }
+                ]
+            }
+        }
+    })
         var app = new Vue({
             el: "#app",    
             mounted() {
@@ -46,7 +87,8 @@
                    { name: 'Emma' },
                    { name: 'Sophia' },
                    { name: 'Isabella' }
-                ]
+                ],
+                movie: 'transformers'
             },
             methods: {
                 remove(index) {
