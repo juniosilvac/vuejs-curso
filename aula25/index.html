@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aula 24 -  Vue js rotas: navegação automática</title>
+    <title>Aula 25 -  Vue js rotas: redirecionamento e rota padrão</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,6 +35,7 @@
             <ul>
                 <li><router-link :to="{ name:'transformers' }">Transformers</router-link></li>
                 <li><router-link :to="{ name:'gameOfThrones' }">GameOfThrones</router-link></li>
+                <li><router-link to="/arrow">Arrow</router-link></li>
             </ul>
             <router-view></router-view>
         </div>
@@ -71,6 +72,13 @@
            {{$route.params.name}}
        </div>
    </template>
+
+   <template id="error404">
+       <div>
+           <h1>Página não encontrada</h1>
+           <p>Ops! Parece que está página não existe.</p>
+       </div>
+   </template>
    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
@@ -80,6 +88,10 @@
     <script>
         var TransformersContent = Vue.component('transformes-Content', {
             template: '#transformesContent'
+        })
+
+        var error404 = Vue.component('error404', {
+            template: '#error404'
         })
 
 
@@ -110,13 +122,15 @@
         })
         
         var router = new VueRouter({
-           // mode:'history',
+            // mode:'history',
             routes: [
+                {path: '/', name:'home', redirect: {name: 'transformesContent', params:{ name: 'megatron'}}},
                 {path: '/transformers', name:'transformers', component: Transformers,
                 children: [
                 {path: ':name', name:'transformesContent', component: TransformersContent}
                 ]},
-                {path: '/game-of-thrones', name:'gameOfThrones',component: GameOfThrones}
+                {path: '/game-of-thrones', name:'gameOfThrones',component: GameOfThrones},
+                {path: '*', name:'error404',component: error404}
             ]
 
         });
@@ -125,10 +139,10 @@
             el: "#app",
             router,           
             create() {
-                this.$router.push({name: 'transformesContent', params:{ name: 'megatron'}})
+                //this.$router.push({name: 'transformesContent', params:{ name: 'megatron'}})
             },
             data: {
-                titulo: "Aula 24 -  Vue js rotas: navegação automática!"                
+                titulo: "Aula 25 -  Vue js rotas: redirecionamento e rota padrão!"                
             }
         })
     </script>
